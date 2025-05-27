@@ -302,6 +302,10 @@
 
       async uploadVideo() {
         const formData = new FormData();
+        let isLastTaskfinish = false;
+        if(this.currentTaskIndex === this.uploadFile.tasks.length - 1) {
+          isLastTaskfinish = true;
+        }
 
         if(this.currentTaskIndex==0){
           formData.append('firstName', this.userInfoFile.firstName);
@@ -344,8 +348,7 @@
           }
         })
         .then(response => {
-          const isLastTask = this.currentTaskIndex === this.uploadFile.tasks.length - 1;
-          if (isLastTask && !this.isRecording) {
+          if (isLastTaskfinish) {
               const doc = this.recordingPopup.document;
               const spinner = doc.getElementById("loadingSpinner");
               const nextBtn = doc.getElementById("nextBtn");
