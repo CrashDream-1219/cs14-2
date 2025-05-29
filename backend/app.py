@@ -20,7 +20,7 @@ S3_OUTPUT_FOLDER = 'Output/'
 
 def create_app(config_name='development'):
     app = Flask(__name__)
-    # 测试时用的配置
+    # The configuration used during the test
     app.config['TESTING'] = (config_name == 'testing')
     app.config['S3_BUCKET'] = os.environ.get('S3_BUCKET', 'cs14-2-recordingtool')
     CORS(app)
